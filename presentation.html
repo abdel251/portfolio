@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio BUT R&T | À propos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">portfolio<span>.</span>rt</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="presentation.html" class="active">À propos</a></li>
+    <li><a href="saes.html">Travaux SAE</a></li>
+    <li><a href="bilan.html">Bilan</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="label">À propos de moi</div>
+  <h2>Profil &amp; Projection professionnelle</h2>
+
+  
+
+  <div class="info-grid">
+    <div class="info-field">
+      <div class="field-label">Identité</div>
+      <div class="field-value placeholder">BENNACEUR ABDELDJALIL</div>
+    </div>
+    <div class="info-field">
+      <div class="field-label">Spécialisation Actuelle</div>
+      <div class="field-value placeholder"> BUT Réseaux et Télécommunications – Parcours Cybersécurité</div>
+    </div>
+    <div class="info-field">
+      <div class="field-label">Cycle de Formation</div>
+      <div class="field-value placeholder"> Promotion 2025 – 2028</div>
+    </div>
+    
+    <div class="info-field">
+    <div class="field-label">Liens Professionnels</div>
+    <div class="field-value">
+        <a href="mailto:votre.email@etu.unicaen.fr">Email</a> · 
+        <a href="https://www.linkedin.com/in/votre-identifiant" target="_blank" rel="noopener noreferrer">LinkedIn</a> · 
+        <a href="https://github.com/votre-pseudo" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+</div>
+      
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="margin-bottom:2rem">Qui suis-je ?</h3>
+  <div class="card" style="margin-bottom:2.5rem; background-color: var(--accent-light);">
+    <p class="field-value placeholder" style="font-style:italic; color:var(--text-muted); margin-bottom:0">
+      Actuellement étudiant en première année de BUT Réseaux et Télécommunications à l'IUT Grand Ouest Normandie (Campus d'Ifs), je me passionne pour les infrastructures informatiques et la connectivité. 
+      Curieux et rigoureux, j'ai développé au cours de mes premiers projets un intérêt marqué pour la virtualisation (Proxmox), l'administration système sous Linux et la sécurisation des réseaux. 
+      Ces travaux pratiques m'ont permis de renforcer ma capacité à résoudre des problèmes techniques complexes et à travailler efficacement en équipe.
+    </p>
+  </div>
+
+  <h3 style="margin-bottom:2rem">Ambitions &amp; Projection</h3>
+  <div class="card">
+    <p class="field-value placeholder" style="font-style:italic; color:var(--text-muted); margin-bottom:0">
+    Mon ambition à court terme est de réaliser un premier stage enrichissant afin de mettre en pratique les compétences acquises durant mon cursus. À moyen terme, mon objectif prioritaire est d'intégrer une formation en <strong>alternance</strong>. Ce mode d'apprentissage est pour moi le levier idéal pour concilier les exigences académiques du BUT R&T avec une expérience professionnelle significative sur le terrain, notamment dans l'administration réseau ou système. Je souhaite ainsi devenir un professionnel rapidement opérationnel, capable de contribuer activement à la performance et à la sécurité des infrastructures numériques
+  </div>
+</main>
+
+<footer class="footer-strip">
+  <span>BUT Réseaux &amp; Télécommunications · <strong>IUT Grand Ouest Normandie</strong></span>
+  <span>portfolio numérique — <span id="year"></span></span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

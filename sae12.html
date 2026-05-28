@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAÉ 1.2 - S'initier aux réseaux informatiques</title>
+    <link rel="stylesheet" href="sae12.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div style="padding: 2rem;">
+        <a href="index.html" class="btn-back">← Retour au portfolio</a>
+    </div>
+
+    <main class="sae-container" style="margin: 0 auto; padding: 0 2rem;">
+        
+        <header>
+            <h1 class="sae-main-title">SAÉ 1.2 <br> S'initier aux réseaux informatiques</h1>
+            <p style="font-family: var(--font-body); color: var(--text-muted); font-size: 1.1rem; border-left: 2px solid var(--accent); padding-left: 1rem;">
+                Évolution de l'infrastructure de Fibre&Company
+            </p>
+        </header>
+
+        <section class="sae-section">
+            <h2>I. Contexte et cahier des charges</h2>
+            <p>
+                Ce projet s'inscrit dans le cadre de la refonte et de l'évolution de l'infrastructure réseau et système de la société <strong>Fibre&Company</strong>, exigeant le déploiement d'un réseau local (LAN) multi-sites sécurisé, segmenté et hautement disponible. Le cahier des charges imposait une sectorisation rigoureuse du trafic à travers la mise en œuvre de plusieurs VLANs métiers et d'un VLAN natif de sécurité, l'optimisation des liaisons par l'agrégation de liens (EtherChannel) et le protocole RSTP, ainsi que la configuration du routage inter-VLAN et statique sur un routeur Cisco 2911. En parallèle, le volet système exigeait le déploiement d'un serveur Debian virtualisé sous l'hyperviseur Proxmox, configuré exclusivement en ligne de commande (CLI), devant héberger des services clés (Apache2, Bind9, SMB) tout en respectant de strictes contraintes de sécurité préconisées par l'ANSSI et des mécanismes de sauvegarde incrémentale basés sur le système de fichiers XFS.
+            </p>
+        </section>
+
+        <section class="sae-section">
+            <h2>II. Vocabulaire technique utilisé</h2>
+            <ul>
+                <li><strong>RSTP (Rapid Spanning Tree Protocol) :</strong> Protocole réseau de niveau 2 permettant de cartographier une topologie physique contenant des boucles afin de bloquer les ports redondants, évitant ainsi les tempêtes de broadcast tout en assurant une convergence ultra-rapide en cas de panne d'un lien.</li>
+                <li><strong>Agrégation de liens (EtherChannel / LACP) :</strong> Technique consistant à regrouper plusieurs liaisons physiques entre deux commutateurs en un seul lien logique unique, permettant d'augmenter la bande passante globale et d'offrir une redondance matérielle transparente.</li>
+                <li><strong>Routage Inter-VLAN :</strong> Configuration permettant à des terminaux situés dans des réseaux virtuels (VLANs) distincts et isolés de communiquer entre eux en passant par un équipement de niveau 3 (routeur ou commutateur de niveau 3) qui valide et oriente les flux.</li>
+                <li><strong>Permissions avancées (SGID / Sticky Bit) :</strong> Droits d'accès spécifiques sous Linux permettant de forcer l'héritage du groupe de travail sur tous les fichiers créés dans un répertoire (SGID) ou de restreindre la suppression d'un fichier au seul utilisateur qui l'a créé (Sticky Bit), indispensable pour la sécurité des dossiers partagés.</li>
+            </ul>
+        </section>
+
+        <section class="sae-section">
+            <h2>III. Méthodologie et étapes de mise en œuvre</h2>
+            <p style="margin-bottom: 2rem;">La mise en œuvre opérationnelle du projet de refonte pour Fibre&Company s'est articulée autour de 7 grandes étapes techniques successives, allant de la modélisation à la phase de recette finale.</p>
+            
+            <ul style="list-style: none; padding-left: 0; display: flex; flex-direction: column; gap: 1.5rem;">
+                
+                <li>
+                    <strong>Étape 1 : Préparation, analyse et modélisation de la topologie</strong><br>
+                    Après avoir analysé le cahier des charges, réparti nos rôles et entamé notre première ébauche de la topologie physique sous Visio, ce schéma s'est révélé non conforme aux normes professionnelles car il adoptait une approche abstraite sans spécifier la numérotation des ports ni la distinction des interfaces, un échec de modélisation doublé d'une mauvaise gestion de notre temps puisque les délais impartis pour chaque tâche n'ont pas été respectés, ce qui démontre que nous aurions dû mieux maîtriser notre calendrier et travailler dès le départ sur un logiciel de simulation adapté comme Cisco Packet Tracer afin de disposer d'une véritable interface matérielle photoréaliste.
+                    
+                    <div class="sae-media-grid" style="grid-template-columns: 1fr; margin-top: 1rem;">
+                        <figure class="sae-card-media">
+                           <div class="img-wrapper">
+    <img src="shemaphisique.png" alt="Schéma physique Cisco">
+</div>
+                        </figure>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Étape 2 : Configuration de l'infrastructure de commutation (SWR-1, SW1, SW2)</strong><br>
+                    Pour segmenter et optimiser la commutation, nous avons créé les VLANs, configuré les SVI et activé les pools DHCP sur le commutateur de cœur SWR-1, assigné les ports en mode d'accès ou trunk sur les commutateurs SW1 et SW2, puis forcé le protocole RSTP comme pont racine et déployé des agrégations de liens EtherChannel via LACP pour garantir la haute disponibilité et accroître la bande passante.
+                </li>
+
+                <li>
+                    <strong>Étape 3 : Routage IP et interconnexion (Routeur Cisco 2911)</strong><br>
+                    Bien que nous ayons configuré les interfaces LAN en /30 et WAN du routeur Cisco 2911, l'infrastructure a souffert d'un problème d'interconnexion critique en raison de l'oubli de la route statique vers le réseau du serveur, ce qui rendait ce dernier totalement injoignable car un routeur est incapable de transférer ou d'aiguiller des paquets réseau s'il ne possède pas explicitement le chemin de destination dans sa table de routage, un dysfonctionnement technique majeur que nous aurions impérativement dû détecter en effectuant des tests de connectivité complets en amont de notre présentation si le manque de temps ne nous avait pas empêchés de le faire.
+                    
+                     <div class="sae-media-grid" style="grid-template-columns: 1fr; margin-top: 1rem;">
+                        <figure class="sae-card-media">
+                           <div class="img-wrapper">
+    <img src="route statique.png" alt="Schéma physique Cisco">
+</div>
+                        </figure>
+                        <div class="sae-media-grid" style="grid-template-columns: 1fr; margin-top: 1rem;">
+                        <figure class="sae-card-media">
+                           <div class="img-wrapper">
+    <img src="siteennaxicible.png" alt="Schéma physique Cisco">
+</div>
+                        </figure>
+                    </div>
+                </li>
+
+                <li>
+                    <strong>Étape 4 : Déploiement et partitionnement de l'environnement virtuel (Proxmox & VM Debian)</strong><br>
+                    Pour installer notre socle système, nous avons déployé une machine virtuelle Debian sous l'hyperviseur Proxmox, configuré sa carte réseau dans le VLAN 200 dédié aux serveurs, et réalisé un partitionnement rigoureux de ses quatre disques distincts sous le système de fichiers XFS afin d'optimiser la sécurité et la résilience des données stockées.
+                </li>
+
+                <li>
+                    <strong>Étape 5 : Installation et configuration des services applicatifs et système</strong><br>
+                    En travaillant exclusivement en ligne de commande, nous avons automatisé la création non interactive des comptes utilisateurs grâce à la commande <em>newusers</em>, puis installé et paramétré les services indispensables à l'entreprise à savoir Samba pour le partage de fichiers, Apache2 pour l'intranet, Bind9 pour le cache DNS, ainsi que les serveurs TFTP et SSH pour la gestion de l'infrastructure.
+                </li>
+
+                <li>
+                    <strong>Étape 6 : Application des politiques de sécurité et de durcissement (Cisco & Linux)</strong><br>
+                    Conformément aux exigences de durcissement, nous avons banni les accès en texte clair comme Telnet ou HTTP, procédé à l'extinction administrative des ports inutilisés des commutateurs en les isolant dans le VLAN 696 avec les protections <em>port-security</em> et <em>storm-control</em>, et renforcé l'accès au serveur en activant une authentification exclusive par paires de clés SSH.
+                </li>
+
+                <li>
+                    <strong>Étape 7 : Recette technique et validation de l'infrastructure (Tests obligatoires)</strong><br>
+                    Lors de la phase finale de validation, notre recette technique a révélé un problème méthodologique majeur puisque chaque membre de l'équipe a uniquement testé sa propre partie de manière isolée sans que nous n'ayons jamais éprouvé tous ensemble le fonctionnement global de l'ensemble des configurations réunies, une erreur d'intégration que nous aurions dû éviter en mettant en place, comme solution, une phase de tests collectifs et transversaux pour garantir la parfaite cohérence de l'infrastructure finale.
+                </li>
+            </ul>
+        </section>
+
+       
+
+    </main>
+
+    <footer class="footer-strip" style="max-width: 820px; margin: 4rem auto 0; padding: 2rem;">
+        <span>© 2026 - Portfolio BUT R&T</span>
+        <span>SAÉ 1.2</span>
+    </footer>
+
+</body>
+</html>

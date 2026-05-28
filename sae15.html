@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SAÉ 15 - Traiter des données | Portfolio</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sae15.css"> </head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">portfolio<span>.</span>rt</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="presentation.html">À propos</a></li>
+      <li><a href="saes.html" class="active">Travaux SAE</a></li>
+      <li><a href="bilan.html">Bilan</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <a href="saes.html" class="btn-back">← Retour aux projets</a>
+
+    <h1 class="sae-main-title">SAÉ 1.05 : Traiter des données</h1>
+
+    <div class="sae-container">
+      
+      <section class="sae-section">
+        <h2>1. Contexte du projet</h2>
+        <p>
+          Ce projet marquait une étape importante de notre premier semestre : le passage à une autonomie complète dans la conception d'un programme informatique. L'objectif était de concevoir une application capable de centraliser, traiter et mettre en forme des données provenant de sources externes via des API (format JSON et XML). Au-delà de l'aspect purement fonctionnel, cette SAÉ exigeait une rigueur particulière dans la structuration du code, la gestion des erreurs et la documentation technique.
+        </p>
+      </section>
+
+      <section class="sae-section">
+        <h2>2. Compétences mobilisées</h2>
+        <ul>
+          <li><strong>Programmation (R107) :</strong> Développement en Python avec une attention particulière portée sur la modularité du code et la gestion des structures de données complexes.</li>
+          <li><strong>Interopérabilité et Web (R109) :</strong> Manipulation de requêtes API et parsing de formats de données standards (JSON, XML) pour extraire des informations pertinentes.</li>
+          <li><strong>Traitement d'images :</strong> Utilisation avancée de la bibliothèque <em>Pillow</em> pour manipuler, assembler des tuiles cartographiques et intégrer des marqueurs dynamiques.</li>
+          <li><strong>Méthodologie (R115) :</strong> Organisation du travail en binôme, rédaction d'une documentation technique claire en Markdown et formalisation d'un rapport de projet concis.</li>
+        </ul>
+      </section>
+
+      <section class="sae-section">
+        <h2>3. Analyse réflexive</h2>
+        <p>
+          L'aspect le plus stimulant de cette SAÉ a été la gestion de l'autonomie. Contrairement aux travaux dirigés classiques, nous avions la responsabilité de choisir les solutions techniques pour résoudre les problèmes rencontrés avec les API (ex: gestion des limites de requêtes ou des formats de données imprévus).
+        </p>
+        <p>
+          La manipulation des données brutes (JSON/XML) s'est révélée être un défi technique formateur, tout comme l'utilisation de la bibliothèque <em>Pillow</em> qui a nécessité une approche mathématique pour calculer correctement les coordonnées des tuiles. Ce projet a renforcé ma compréhension de la chaîne de traitement de l'information, de la récupération jusqu'à la visualisation finale.
+        </p>
+      </section>
+
+      <section class="sae-section">
+        <h2>4. Preuves et traces de travail</h2>
+        <p>Voici les documents illustrant la réalisation de cette application :</p>
+        
+        <div class="sae-media-grid">
+          <figure class="sae-card-media">
+            <div class="img-wrapper">
+              <img src="https://via.placeholder.com/600x400" alt="Capture architecture code">
+            </div>
+            <figcaption><strong>Figure 1 :</strong> Architecture du code et organisation des modules Python.</figcaption>
+          </figure>
+          
+          <figure class="sae-card-media">
+            <div class="img-wrapper">
+              <img src="https://via.placeholder.com/600x400" alt="Résultat traitement images">
+            </div>
+            <figcaption><strong>Figure 2 :</strong> Illustration du résultat final (assemblage de tuiles via Pillow).</figcaption>
+          </figure>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer-strip">
+    <span>BUT Réseaux &amp; Télécommunications · <strong>IUT Grand Ouest Normandie</strong></span>
+    <span>portfolio numérique — <span id="year"></span></span>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

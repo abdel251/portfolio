@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAÉ 13 - Initiation aux Télécoms | Portfolio BUT R&T</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sae101.css">
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">portfolio<span>.</span>rt</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="presentation.html">À propos</a></li>
+      <li><a href="saes.html" class="active">Travaux SAE</a></li>
+      <li><a href="bilan.html">Bilan</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <a href="saes.html" class="btn-back">← Retour aux projets SAÉ</a>
+
+    <div class="label" style="margin-top: 1rem;">SAÉ 13 • Semestre 1</div>
+    <h1 class="sae-main-title">Initiation aux Télécommunications</h1>
+
+    <div class="sae-container">
+
+      <section class="sae-section">
+        <h2>1. Contexte et Objectifs</h2>
+        <p>Cette SAÉ est centrée sur l'étude physique des réseaux. L'objectif était de passer de la théorie (cours de transmission) à la pratique en manipulant les deux supports de transmission majeurs : le cuivre et la fibre optique. Nous avons dû reproduire les mesures réalisées par un certificateur professionnel pour diagnostiquer des liaisons et valider leur qualité.</p>
+      </section>
+
+      <section class="sae-section">
+        <h2>2. Compétences &amp; Apprentissages Critiques (AC)</h2>
+        <p>Ce projet m'a permis de mobiliser et de développer les compétences suivantes :</p>
+        <ul class="ac-custom-list">
+          <li>
+            <strong>Télécommunications – Supports physiques :</strong>
+            <ul class="ac-sub-list">
+              <li><span>AC 13.01 :</span> Appréhender les phénomènes physiques liés à la transmission (propagation, atténuation).</li>
+              <li><span>AC 13.02 :</span> Qualifier les performances d'une liaison physique via des mesures instrumentées.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section class="sae-section">
+        <h2>3. Travail réalisé</h2>
+        <p>Le travail s'est articulé autour de deux axes principaux :</p>
+        <ol class="sae-numbered-steps">
+          <li><strong>Volet Cuivre :</strong> Mesures de temps de parcours sur paire torsadée, détermination de la NVP (Nominal Velocity of Propagation) et localisation de défauts via la méthode DTF (Distance to Fault).</li>
+          <li><strong>Volet Fibre Optique :</strong> Câblage d'une liaison et mesure de l'atténuation globale par photométrie à l'aide d'un photomètre et d'une source optique calibrée.</li>
+          <li><strong>Synthèse :</strong> Rédaction de rapports techniques de mesures et création d'une fiche de synthèse (A3) pour la préparation du QCM final.</li>
+        </ol>
+      </section>
+
+      <section class="sae-section">
+        <h2>4. Analyse réflexive</h2>
+        <p class="highlight-text">Cette SAÉ a été le premier contact "physique" avec les réseaux, une révélation sur l'importance du support de transmission.</p>
+        <h3>Découverte du terrain</h3>
+        <p>J'ai réalisé que la qualité d'une infrastructure ne dépend pas seulement de la configuration logicielle, mais avant tout de la santé physique du support. Un câble mal terminé ou une fibre sale peuvent dégrader l'ensemble d'un réseau.</p>
+        <h3>Rigueur et précision</h3>
+        <p>La difficulté majeure a été la rigueur requise lors des mesures photométriques : la moindre impureté sur un connecteur fausse le résultat. Cela m'a appris la patience et la précision, des qualités indispensables pour un futur technicien réseau.</p>
+      </section>
+
+      <section class="sae-section">
+        <h2>5. Preuves et traces de travail</h2>
+        <p>Voici les documents illustrant mon travail sur cette SAÉ :</p>
+        <div class="sae-media-grid">
+          <figure class="sae-card-media">
+            <div class="img-wrapper">
+              <img src="image_telecom.png" alt="Illustration télécommunications">
+            </div>
+            <figcaption><strong>Figure 1 :</strong> Rapport de mesures cuivre – calculs NVP et localisation DTF.</figcaption>
+          </figure>
+          <figure class="sae-card-media">
+            <div class="img-wrapper">
+              <img src="https://via.placeholder.com/600x400/f4efeb/8c6e56?text=Mesures+Fibre" alt="Mesures fibre optique">
+            </div>
+            <figcaption><strong>Figure 2 :</strong> Résultats photométriques de la liaison fibre optique.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer-strip">
+    <span>BUT Réseaux &amp; Télécommunications · <strong>IUT Grand Ouest Normandie</strong></span>
+    <span>portfolio numérique — <span id="year"></span></span>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

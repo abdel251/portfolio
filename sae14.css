@@ -1,0 +1,83 @@
+/* ══════════════════════════════════════════════
+   Style pour votre rapport SAÉ 1.4
+   ══════════════════════════════════════════════ */
+
+:root {
+  --font-title: 'Cormorant Garamond', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --bg: #faf7f4;
+  --surface: #f4efeb;
+  --border: #e2d9d0;
+  
+  --text: #2c2420;
+  --accent: #8c6e56;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Titres */
+h1 {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 10px;
+  color: var(--text);
+}
+
+h2 {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  margin-top: 3rem;
+  color: var(--accent);
+}
+
+h3 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 2rem;
+  color: #555;
+}
+
+/* Contenu */
+p {
+  margin-bottom: 1.2rem;
+}
+
+ul {
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+li {
+  margin-bottom: 0.8rem;
+}
+
+/* Zones pour les images / placeholders */
+.img-placeholder {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  font-style: italic;
+}
+
+/* Espacement global des sections */
+section {
+  margin-bottom: 3rem;
+}
