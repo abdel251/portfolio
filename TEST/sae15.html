@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport SAÉ 1.5 - Traiter des données</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sae15.css">
+</head>
+<body>
+
+    <main>
+        <h1>SAÉ 1.5 : Traiter des données</h1>
+        <h2>Conception d'un projet de développement et manipulation de données</h2>
+
+        <section>
+            <h3>I. Contexte et cahier des charges</h3>
+            <p>Ce projet, réalisé dans le cadre de la SAÉ 1.5, avait pour objectif de concevoir un programme en Python capable de collecter, traiter et mettre en forme des données provenant de sources externes. Le cahier des charges imposait une réalisation en autonomie complète, structurée autour de l'utilisation d'API (REST) pour interroger des services web. Le projet devait permettre de manipuler des formats de données structurées (JSON) et d'utiliser des bibliothèques de traitement d'images (type Pillow) pour automatiser la création de documents ou de cartes. L'enjeu était de démontrer notre capacité à intégrer des données dynamiques dans une application fonctionnelle, tout en respectant les bonnes pratiques de développement (code propre, modularité).</p>
+        </section>
+
+        <section>
+            <h3>II. Vocabulaire technique utilisé</h3>
+            <ul>
+                <li><strong>API REST :</strong> Interface permettant à notre programme de communiquer avec des services web pour récupérer ou envoyer des données de manière standardisée.</li>
+                <li><strong>Format JSON :</strong> Format léger d'échange de données structurées, très utilisé par les APIs pour transmettre des informations lisibles par machine.</li>
+                <li><strong>Bibliothèque Pillow :</strong> Bibliothèque Python utilisée pour la manipulation et la transformation d'images (assemblage, ajout de marqueurs, traitement graphique).</li>
+                <li><strong>Markdown :</strong> Langage de balisage léger utilisé pour formater la documentation du code et présenter les résultats de manière lisible.</li>
+                <li><strong>Autonomie de développement :</strong> Démarche consistant à résoudre des problématiques techniques sans assistance directe, propre à la conduite de projet professionnel.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>III. Apprentissages Critiques (AC) et Bilan</h3>
+            <ul>
+                <li><strong>AC - Programmer (RT3) :</strong> Ce projet a consolidé ma maîtrise du langage Python. J'ai appris à concevoir une architecture logicielle capable d'interagir avec le Web. L'utilisation d'API pour extraire des données réelles et les traiter a transformé mes compétences théoriques en une solution logicielle concrète.</li>
+                <li><strong>AC - Développer une démarche méthodologique :</strong> La gestion du projet en autonomie a été formatrice. J'ai dû structurer mon code, gérer les erreurs potentielles lors des appels API et organiser mes fonctions pour assurer la maintenabilité de l'application. Cette approche "projet" a été essentielle pour respecter les délais.</li>
+                <li><strong>AC - Traitement des données :</strong> J'ai réalisé l'importance de la structuration des données. Passer d'une réponse brute (JSON) à une information exploitée (image, texte, carte) m'a permis de comprendre le cycle complet du traitement de l'information dans une infrastructure réseau.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>IV. Méthodologie et étapes de mise en œuvre</h3>
+
+            <h4>1. Analyse et Planification</h4>
+            <p>Cette phase a consisté à analyser les documents fournis par le professeur afin de définir le périmètre du projet. Nous avons identifié les types de données spécifiques à extraire depuis l'API OpenStreetMap, dont l'utilisation était imposée par le cahier des charges. Pour mener à bien ce développement, nous avons fait le choix de travailler en binôme, directement sur le même fichier de code et en simultané. Cette méthodologie de travail s'est avérée très efficace : lors des blocages techniques, cette collaboration immédiate nous permettait de confronter nos réflexions et de trouver rapidement des solutions. En parallèle, nous avons structuré notre projet en fonctions dès le départ pour faciliter le développement et assurer une bonne modularité.</p>
+            <div class="placeholder">[Insérer ici une capture d'écran de votre organigramme ou de la structure de vos fichiers]</div>
+
+            <h4>2. Développement et Interrogation API</h4>
+            <p>Cette phase a constitué le cœur technique de notre projet. Nous avons développé les scripts en Python pour effectuer les requêtes HTTP vers l'API. Manipuler des API étant une première pour nous, nous avons initialement rencontré des difficultés pour en appréhender le fonctionnement. Toutefois, nous avons réussi à surmonter cet obstacle en nous appuyant sur les documents fournis par l'enseignant ainsi que sur des vidéos éducatives. Ces ressources ont été déterminantes pour comprendre la nature et le mécanisme des échanges de données. Concrètement, notre script fonctionne en envoyant des requêtes HTTP ciblées vers le service d'OpenStreetMap. Une fois la connexion établie, le programme réceptionne les données structurées (format JSON), les analyse, et les traite selon nos besoins. Nous avons également intégré des mécanismes de gestion des exceptions afin de garantir la robustesse et la stabilité de notre application.</p>
+            <div class="placeholder">[Insérer ici votre figure 1 : schéma ou capture d'écran montrant l'interaction entre votre script et l'API]</div>
+
+            <h4>3. Traitement des données et Manipulation d'images</h4>
+            <p>Cette phase constitue l'aboutissement visuel de notre projet. Après avoir récupéré les données brutes au format JSON, nous avons procédé à leur transformation en un rendu graphique exploitable via la bibliothèque Pillow. Le processus s'est articulé autour de trois étapes : extraction et parsing, traitement graphique (mapping des coordonnées), et assemblage des annotations. <strong>Analyse de la démarche :</strong> Le défi majeur a été la précision mathématique pour la conversion des coordonnées. Cette étape a été extrêmement formatrice, car elle m'a permis de comprendre le lien indispensable entre le traitement pur de l'information (backend) et sa restitution visuelle intelligible pour l'utilisateur final.</p>
+            <div class="placeholder">[Insérer ici une capture d'écran de l'image finale générée]</div>
+
+            <h4>4. Tests et Finalisation</h4>
+            <p>La dernière étape a été consacrée à la robustesse et à la portabilité du code. Nous avons effectué des tests intensifs avec différentes entrées de données pour nous assurer que le programme ne plante pas. Un aspect crucial de cette phase a été de garantir que le script puisse être exécuté directement depuis un terminal standard, en dehors de tout environnement de développement (type VS Code). Nous avons corrigé les chemins relatifs et vérifié les dépendances pour que l'exécution soit fluide et universelle, garantissant que l

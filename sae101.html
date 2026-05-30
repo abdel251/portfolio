@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAÉ 1.01 - Hygiène informatique | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sae101.css">
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">portfolio<span>.</span>rt</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="presentation.html">À propos</a></li>
+      <li><a href="saes.html" class="active">Travaux SAE</a></li>
+      <li><a href="bilan.html">Bilan</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <a href="saes.html" class="btn-back">← Retour aux projets</a>
+    
+    <h1 class="sae-main-title">SAÉ 1.01 : Se sensibiliser à l'hygiène informatique et à la cybersécurité</h1>
+
+    <section class="sae-section">
+      <h2>Contexte et cahier des charges</h2>
+      <p>Ce projet se compose de deux volets indissociables : une immersion théorique dans les enjeux de la cybersécurité et une expérimentation technique sur des outils d'analyse réseau. Le cahier des charges imposait de suivre les modules du MOOC "SecNumAcadémie" de l'ANSSI pour forger une culture de l'hygiène numérique, ainsi que de réaliser une présentation orale. Cette présentation devait démontrer notre capacité à utiliser et expliquer différents outils d'analyse (comme Nmap et autres utilitaires de diagnostic) pour comprendre l'état de santé d'un réseau ou d'une machine. L'objectif était d'adopter une posture professionnelle en vulgarisant des techniques d'audit.</p>
+    </section>
+
+    <section class="sae-section">
+      <h2>Vocabulaire technique utilisé</h2>
+      <ul>
+        <li><strong>Hameçonnage (Phishing) :</strong> Technique visant à soutirer des informations confidentielles en usurpant l'identité d'un tiers de confiance.</li>
+        <li><strong>Audit réseau :</strong> Processus consistant à analyser un réseau pour en identifier les composants et les failles potentielles.</li>
+        <li><strong>Scanner de ports :</strong> Logiciel permettant de lister les portes d'entrée (ports) ouvertes sur une machine pour vérifier les services exposés.</li>
+        <li><strong>Vulnérabilité :</strong> Faiblesse dans un système informatique pouvant être exploitée par une personne malveillante.</li>
+      </ul>
+    </section>
+
+    <section class="sae-section">
+      <h2>Apprentissages Critiques (AC)</h2>
+      <ul>
+        <li><strong>AC11.02 :</strong> Comprendre l'architecture des systèmes numériques : Mobilisé durant ma phase d'étude théorique pour comprendre les vecteurs d'attaque et le fonctionnement des réseaux.</li>
+        <li><strong>AC11.04 :</strong> Maîtriser les rôles des systèmes d'exploitation : Concrétisé lors de l'utilisation pratique des outils d'analyse (Nmap) en ligne de commande.</li>
+        <li><strong>AC11.05 :</strong> Identifier les dysfonctionnements du réseau local : Cœur de ma présentation orale, où j'ai démontré comment détecter des anomalies ou des configurations risquées pour les signaler.</li>
+      </ul>
+    </section>
+
+    <section class="sae-section">
+      <h2>Méthodologie</h2>
+
+      <h3>1. Phase d'appropriation théorique (MOOC SecNumAcadémie)</h3>
+      <p>Bien que je n'aie pas obtenu la certification officielle du MOOC SecNumAcadémie, cet échec relatif résulte principalement de mes difficultés d'adaptation aux méthodes de travail de l'enseignement supérieur lors de ma transition depuis le lycée, une période charnière durant laquelle j'ai dû prioriser mon organisation personnelle pour appréhender ces nouvelles exigences académiques au détriment de la validation formelle du parcours ; toutefois, cette expérience a été un levier de progression indispensable, me permettant de prendre conscience des méthodes de travail nécessaires à mon autonomie et m'incitant désormais à mieux anticiper mes plannings pour conjuguer rigueur technique et réussite administrative.</p>
+
+      <h3 style="margin-top: 2rem;">2. Phase d'expérimentation technique (Outils d'analyse)</h3>
+      <p>Pour ce qui est de l'expérimentation technique, j'ai réalisé un audit réseau approfondi en exécutant la commande nmap -A -T4 afin de scanner simultanément différentes machines cibles, une démarche qui m'a permis d'obtenir une cartographie précise des ports ouverts, d'isoler les versions des services actifs tels que SSH ou HTTP, et de déterminer les systèmes d'exploitation exécutés (Linux et Windows) ; avec le recul, j'ai conscience que la valeur ajoutée de cette SAÉ réside dans l'interprétation critique de ces résultats techniques pour évaluer la surface d'attaque d'un parc informatique hétérogène, une analyse que j'aurais pu pousser encore plus loin en simulant des contre-mesures ou des pare-feu pour observer la variation des données récoltées.</p>
+      
+      <div class="sae-media-grid" style="margin-top: 2rem;">
+        <figure class="sae-card-media">
+          <div class="img-wrapper">
+            <img src="NMAP.png" alt="Capture d'écran de l'analyse Nmap">
+          </div>
+          <figcaption><strong>Figure :</strong> Résultat de l'analyse Nmap sur la machine cible.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-strip">
+    <span>BUT Réseaux &amp; Télécommunications · <strong>IUT Grand Ouest Normandie</strong></span>
+    <span>portfolio numérique — <span id="year"></span></span>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

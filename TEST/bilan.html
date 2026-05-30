@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio BUT R&T | Bilan de compétences</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── BILAN PAGE STYLES ── */
+    .bilan-intro {
+      max-width: 700px;
+      margin-bottom: 2rem;
+    }
+
+    /* Grille de stats globales */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+    }
+
+    .stat-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .stat-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .stat-number {
+      font-family: var(--font-title);
+      font-size: 3rem;
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+    }
+
+    /* Blocs de compétences */
+    .comp-block {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 3rem;
+      margin-bottom: 2.5rem;
+      transition: var(--transition);
+    }
+    .comp-block:hover { border-color: rgba(140, 110, 86, 0.3); }
+
+    .comp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .comp-id {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    /* SAÉ liées */
+    .saes-linked {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.5rem 0;
+    }
+    .sae-chip {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background-color: var(--accent-light);
+      color: var(--accent);
+      border: 1px solid rgba(140, 110, 86, 0.2);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .sae-chip:hover {
+      background-color: var(--accent);
+      color: #fff;
+    }
+
+    /* Listes AC */
+    .ac-list {
+      list-style: none;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .ac-list li {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      line-height: 1.6;
+    }
+    .ac-list li::before {
+      content: '→';
+      color: var(--stat-orange);
+      font-family: var(--font-mono);
+      flex-shrink: 0;
+    }
+
+    /* Barre de progression */
+    .progress-wrap {
+      margin-top: 2rem;
+    }
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+    .progress-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .progress-value {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .progress-bar {
+      height: 4px;
+      background-color: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background-color: var(--accent);
+      border-radius: 2px;
+      width: 0;
+      transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Synthèse textuelle */
+    .comp-synthese {
+      margin-top: 1.5rem;
+      padding: 1.5rem 2rem;
+      background-color: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .comp-synthese strong { color: var(--text); }
+
+    /* Section réflexion globale */
+    .reflexion-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 3rem;
+      margin-top: 5rem;
+    }
+    .reflexion-card h3 {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    @media (max-width: 900px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .comp-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .comp-block { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">portfolio<span>.</span>rt</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="presentation.html">À propos</a></li>
+    <li><a href="saes.html">Travaux SAE</a></li>
+    <li><a href="bilan.html" class="active">Bilan</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="label">Synthèse transversale</div>
+  <h2>Bilan de compétences</h2>
+  <p class="bilan-intro">Regroupement structuré de mes apprentissages issus des différentes SAÉ du semestre 1, organisé selon le référentiel de compétences national du BUT R&T – Parcours Cybersécurité.</p>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--stat-orange)">5</div>
+      <div class="stat-label">SAÉ réalisées</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--stat-blue)">3</div>
+      <div class="stat-label">Compétences mobilisées</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--stat-green)">S1</div>
+      <div class="stat-label">Semestre en cours</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--stat-purple)">1</div>
+      <div class="stat-label">Parcours Cyber</div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top: 0;"></div>
+
+  <!-- Compétence RT1 -->
+  <div class="comp-block">
+    <div class="comp-header">
+      <div>
+        <span class="comp-id">Compétence RT1</span>
+        <h3>Administrer les réseaux et l'Internet</h3>
+      </div>
+      <span class="sae-badge badge-blue">Niveau 1</span>
+    </div>
+
+    <div class="saes-linked">
+      <span style="font-family: var(--font-mono); font-size:0.75rem; color: var(--text-dim); align-self: center; margin-right: 0.3rem;">SAÉ liées :</span>
+      <a href="sae12.html" class="sae-chip">SAÉ 12</a>
+      <a href="sae13.html" class="sae-chip">SAÉ 13</a>
+    </div>
+
+    <div class="comp-synthese">
+      La SAÉ 12 a été le cœur de cette compétence : j'ai configuré des switchs Cisco, mis en place des VLANs et administré des serveurs Debian sous Proxmox. La SAÉ 13 m'a permis d'appréhender la couche physique des réseaux, en mesurant l'atténuation sur fibre optique et en localisant des défauts sur câble cuivre. <strong>Ces deux SAÉ m'ont donné une vision complète de la pile réseau, du câble jusqu'au service applicatif.</strong>
+    </div>
+
+    <ul class="ac-list">
+      <li>AC11.01 – Maîtriser les bases de l'adressage IPv4/IPv6 et la segmentation VLAN</li>
+      <li>AC11.02 – Déployer et configurer des équipements réseau Cisco (switchs, routeurs)</li>
+      <li>AC11.03 – Administrer un système Linux (Debian) en CLI et gérer les services</li>
+      <li>AC11.04 – Mesurer et qualifier des supports de transmission physiques (cuivre, fibre)</li>
+    </ul>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label">Niveau auto-évalué</span>
+        <span class="progress-value">Débutant +  · 55%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" data-width="55"></div></div>
+    </div>
+  </div>
+
+  <!-- Compétence RT4 / Cyber -->
+  <div class="comp-block">
+    <div class="comp-header">
+      <div>
+        <span class="comp-id">Compétence Cyber</span>
+        <h3>Sécuriser les systèmes d'information</h3>
+      </div>
+      <span class="sae-badge badge-orange">Niveau 1</span>
+    </div>
+
+    <div class="saes-linked">
+      <span style="font-family: var(--font-mono); font-size:0.75rem; color: var(--text-dim); align-self: center; margin-right: 0.3rem;">SAÉ liées :</span>
+      <a href="sae101.html" class="sae-chip">SAÉ 1.01</a>
+      <a href="sae12.html" class="sae-chip">SAÉ 12</a>
+    </div>
+
+    <div class="comp-synthese">
+      La SAÉ 1.01 (MOOC ANSSI) a posé les fondations théoriques de ma compréhension de la cybersécurité : gestion des identités, chiffrement, bonnes pratiques. En parallèle, la SAÉ 12 m'a permis de mettre en pratique le durcissement SSH et la sécurisation des accès réseau. <strong>Bien que je n'aie pas obtenu la certification ANSSI du premier coup, cet échec a renforcé ma détermination et ma méthode d'apprentissage.</strong>
+    </div>
+
+    <ul class="ac-list">
+      <li>AC24.01 – Appliquer les recommandations de cybersécurité de l'ANSSI (gestion des mots de passe, 2FA)</li>
+      <li>AC24.02 – Mettre en œuvre les outils fondamentaux de sécurisation (durcissement SSH, clés asymétriques)</li>
+      <li>AC24.05 – Connaître les différents types d'attaque et utiliser des outils d'audit (Nmap)</li>
+    </ul>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label">Niveau auto-évalué</span>
+        <span class="progress-value">En développement · 40%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" data-width="40"></div></div>
+    </div>
+  </div>
+
+  <!-- Compétence RT5 / Programmer -->
+  <div class="comp-block">
+    <div class="comp-header">
+      <div>
+        <span class="comp-id">Compétence RT5</span>
+        <h3>Programmer les équipements et automatiser les tâches</h3>
+      </div>
+      <span class="sae-badge badge-green">Niveau 1</span>
+    </div>
+
+    <div class="saes-linked">
+      <span style="font-family: var(--font-mono); font-size:0.75rem; color: var(--text-dim); align-self: center; margin-right: 0.3rem;">SAÉ liées :</span>
+      <a href="sae15.html" class="sae-chip">SAÉ 15</a>
+      <a href="sae14.html" class="sae-chip">SAÉ 14</a>
+    </div>
+
+    <div class="comp-synthese">
+      La SAÉ 15 m'a initié à la programmation Python en contexte réel : consommation d'API, parsing JSON/XML, et traitement d'images avec Pillow. La SAÉ 14 a quant à elle abordé le développement web (HTML5/CSS3), l'accessibilité numérique (WCAG) et l'utilisation de Git. <strong>Ces deux SAÉ m'ont révélé que la programmation est un levier d'automatisation essentiel dans les métiers réseau.</strong>
+    </div>
+
+    <ul class="ac-list">
+      <li>AC15.01 – Concevoir et implémenter des algorithmes en Python (modularité, gestion d'erreurs)</li>
+      <li>AC15.02 – Interagir avec des API web et parser des formats de données (JSON, XML)</li>
+      <li>AC15.03 – Produire un site web multipage conforme aux standards W3C et accessibilité WCAG</li>
+      <li>AC15.04 – Utiliser Git/GitHub pour le versionnement et la collaboration</li>
+    </ul>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label">Niveau auto-évalué</span>
+        <span class="progress-value">Intermédiaire · 60%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" data-width="60"></div></div>
+    </div>
+  </div>
+
+  <!-- Réflexion globale -->
+  <div class="reflexion-card">
+    <div class="label">Regard rétrospectif</div>
+    <h3>Synthèse du Semestre 1</h3>
+    <p>Ce premier semestre a posé les fondations de mon parcours en BUT R&T. Les cinq SAÉ réalisées m'ont permis de toucher à l'ensemble du spectre du métier : de la couche physique (câblage, mesures) jusqu'à la couche applicative (développement web, scripts Python), en passant par la sécurité et l'administration système.</p>
+    <p>Si je devais identifier <strong>ma principale progression</strong>, c'est la capacité à transformer un échec (la certification ANSSI) en levier d'amélioration. J'ai appris à documenter mes projets plus rigoureusement et à structurer ma pensée technique avant de toucher un clavier.</p>
+    <p><strong>Objectifs pour le Semestre 2 :</strong> Approfondir la configuration avancée des protocoles de routage (OSPF), consolider mes bases en cybersécurité défensive, et obtenir la certification ANSSI SecNumAcadémie.</p>
+  </div>
+
+</main>
+
+<footer class="footer-strip">
+  <span>BUT Réseaux &amp; Télécommunications · <strong>IUT Grand Ouest Normandie</strong></span>
+  <span>portfolio numérique — <span id="year"></span></span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Animation des barres de progression au scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fills = entry.target.querySelectorAll('.progress-fill');
+        fills.forEach(el => {
+          el.style.width = (el.getAttribute('data-width') || '0') + '%';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.comp-block').forEach(block => observer.observe(block));
+</script>
+</body>
+</html>

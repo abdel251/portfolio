@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio BUT R&T | Bilan de compétences</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .bilan-intro {
+      max-width: 700px;
+      margin-bottom: 2rem;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+    }
+
+    .stat-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .stat-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .stat-number {
+      font-family: var(--font-title);
+      font-size: 3rem;
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+    }
+
+    .comp-block {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 3rem;
+      margin-bottom: 2.5rem;
+      transition: var(--transition);
+    }
+    .comp-block:hover { border-color: rgba(140, 110, 86, 0.3); }
+
+    .comp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .comp-id {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .saes-linked {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.5rem 0;
+      align-items: center;
+    }
+    .saes-linked-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-right: 0.3rem;
+    }
+    .sae-chip {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background-color: var(--accent-light);
+      color: var(--accent);
+      border: 1px solid rgba(140, 110, 86, 0.2);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .sae-chip:hover {
+      background-color: var(--accent);
+      color: #fff;
+    }
+
+    .ac-list {
+      list-style: none;
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .ac-list li {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      line-height: 1.6;
+    }
+    .ac-list li::before {
+      content: '→';
+      color: var(--stat-orange);
+      font-family: var(--font-mono);
+      flex-shrink: 0;
+    }
+    .ac-list li strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .progress-wrap { margin-top: 2rem; }
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+    }
+    .progress-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .progress-value {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+    .progress-bar {
+      height: 4px;
+      background-color: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background-color: var(--accent);
+      border-radius: 2px;
+      width: 0;
+      transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .comp-synthese {
+      margin-top: 1.5rem;
+      padding: 1.5rem 2rem;
+      background-color: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .comp-synthese strong { color: var(--text); }
+
+    /* Grille détail AC par SAÉ */
+    .ac-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .ac-detail-card {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+    }
+    .ac-detail-card .ac-sae-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.4rem;
+    }
+    .ac-detail-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .reflexion-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 3rem;
+      margin-top: 5rem;
+    }
+    .reflexion-card h3 {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    @media (max-width: 900px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .comp-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .comp-block { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">portfolio<span>.</span>rt</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="presentation.html">À propos</a></li>
+    <li><a href="saes.html">Travaux SAE</a></li>
+    <li><a href="bilan.html" class="active">Bilan</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="label">Synthèse transversale</div>
+  <h2>Bilan de compétences</h2>
+  <p class="bilan-intro">Regroupement structuré de mes apprentissages issus des cinq SAÉ du semestre 1, organisé selon le référentiel de compétences national du BUT R&amp;T – Parcours Cybersécurité.</p>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--stat-orange)">5</div>
+      <div class="stat-label">SAÉ réalisées</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--stat-blue)">3</div>
+      <div class="stat-label">Compétences mobilisées</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--stat-green)">S1</div>
+      <div class="stat-label">Semestre en cours</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" style="color: var(--stat-purple)">Cyber</div>
+      <div class="stat-label">Parcours</div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top: 0;"></div>
+
+  <!-- ── RT1 : Administrer ── -->
+  <div class="comp-block">
+    <div class="comp-header">
+      <div>
+        <span class="comp-id">Compétence RT1</span>
+        <h3>Administrer les réseaux et l'Internet</h3>
+      </div>
+      <span class="sae-badge badge-blue">Niveau 1</span>
+    </div>
+
+    <div class="saes-linked">
+      <span class="saes-linked-label">SAÉ liées :</span>
+      <a href="sae12.html" class="sae-chip">SAÉ 1.2</a>
+      <a href="sae13.html" class="sae-chip">SAÉ 1.3</a>
+    </div>
+
+    <div class="comp-synthese">
+      La SAÉ 1.2 a été le socle de cette compétence : configuration de commutateurs Cisco (VLANs, RSTP, EtherChannel/LACP), routage statique sur un Cisco 2911, et déploiement d'un serveur Debian sous Proxmox avec des services réseau complets (Apache2, Bind9, Samba, TFTP, SSH). La SAÉ 1.3 m'a permis d'aborder la couche physique, avec des mesures DTF et NVP sur câble coaxial et Ethernet, et une qualification photométrique d'une liaison FTTH. <strong>Ensemble, ces deux SAÉ m'ont donné une vision complète de la pile réseau, du support physique jusqu'au service applicatif.</strong>
+    </div>
+
+    <div class="ac-detail-grid">
+      <div class="ac-detail-card">
+        <div class="ac-sae-label">SAÉ 1.2</div>
+        <p>Configuration VLAN, SVI, DHCP et agrégation de liens EtherChannel/LACP sur des switchs Cisco pour segmenter et optimiser l'infrastructure de Fibre&amp;Company.</p>
+      </div>
+      <div class="ac-detail-card">
+        <div class="ac-sae-label">SAÉ 1.2</div>
+        <p>Déploiement d'un serveur Debian virtualisé sous Proxmox : partitionnement XFS, services Apache2, Bind9, Samba et durcissement SSH par paires de clés asymétriques.</p>
+      </div>
+      <div class="ac-detail-card">
+        <div class="ac-sae-label">SAÉ 1.3</div>
+        <p>Mesure de longueur et localisation de défauts sur câble cuivre (coaxial/Ethernet) à l'aide d'un analyseur DTF, d'un GBF et d'un oscilloscope, en exploitant la valeur NVP.</p>
+      </div>
+      <div class="ac-detail-card">
+        <div class="ac-sae-label">SAÉ 1.3</div>
+        <p>Qualification d'une liaison FTTH par photométrie : nettoyage des connecteurs, mesure d'atténuation et validation par comparaison avec le calcul théorique.</p>
+      </div>
+    </div>
+
+    <ul class="ac-list">
+      <li><strong>AC11.01</strong> — Maîtriser l'adressage IPv4, la segmentation VLAN et le routage statique inter-VLAN sur routeur Cisco 2911</li>
+      <li><strong>AC11.02</strong> — Déployer et configurer des équipements Cisco (switchs de cœur, protocoles RSTP et EtherChannel) en environnement multi-sites</li>
+      <li><strong>AC11.03</strong> — Administrer un système Linux Debian en CLI, gérer les utilisateurs et configurer les services réseau (DNS, HTTP, SMB)</li>
+      <li><strong>AC11.04</strong> — Mesurer et qualifier des supports de transmission physiques (cuivre et fibre optique) avec des instruments professionnels</li>
+    </ul>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label">Niveau auto-évalué</span>
+        <span class="progress-value">Débutant + · 55%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" data-width="55"></div></div>
+    </div>
+  </div>
+
+  <!-- ── Cyber : Sécuriser ── -->
+  <div class="comp-block">
+    <div class="comp-header">
+      <div>
+        <span class="comp-id">Compétence Cyber</span>
+        <h3>Sécuriser les systèmes d'information</h3>
+      </div>
+      <span class="sae-badge badge-orange">Niveau 1</span>
+    </div>
+
+    <div class="saes-linked">
+      <span class="saes-linked-label">SAÉ liées :</span>
+      <a href="sae101.html" class="sae-chip">SAÉ 1.01</a>
+      <a href="sae12.html" class="sae-chip">SAÉ 1.2</a>
+    </div>
+
+    <div class="comp-synthese">
+      La SAÉ 1.01 a posé les fondations théoriques via le MOOC SecNumAcadémie de l'ANSSI : vecteurs d'attaque, gestion des identités, hameçonnage, et audit réseau avec Nmap (<code>nmap -A -T4</code>) pour cartographier ports ouverts, services actifs et systèmes d'exploitation. La SAÉ 1.2 a prolongé cette approche en production réelle : durcissement des commutateurs (bannissement Telnet/HTTP, port-security, storm-control, VLAN 696 d'isolement) et sécurisation SSH par clés asymétriques sur le serveur Debian, conformément aux préconisations ANSSI. <strong>Bien que la certification du MOOC n'ait pas été obtenue au premier passage, cet échec a été le déclencheur d'une prise de conscience sur ma méthode de travail et ma gestion du temps.</strong>
+    </div>
+
+    <div class="ac-detail-grid">
+      <div class="ac-detail-card">
+        <div class="ac-sae-label">SAÉ 1.01</div>
+        <p>Audit réseau avec Nmap : identification des ports ouverts (SSH, HTTP), des versions de services et des systèmes d'exploitation (Linux/Windows) sur un parc hétérogène.</p>
+      </div>
+      <div class="ac-detail-card">
+        <div class="ac-sae-label">SAÉ 1.01</div>
+        <p>Appropriation des recommandations ANSSI (SecNumAcadémie) : hygiène des mots de passe, authentification forte, gestion des mises à jour et sensibilisation au phishing.</p>
+      </div>
+      <div class="ac-detail-card">
+        <div class="ac-sae-label">SAÉ 1.2</div>
+        <p>Durcissement de l'infrastructure Cisco : désactivation de Telnet/HTTP, isolation des ports inutilisés en VLAN 696, activation de port-security et storm-control.</p>
+      </div>
+      <div class="ac-detail-card">
+        <div class="ac-sae-label">SAÉ 1.2</div>
+        <p>Sécurisation du serveur Debian : authentification SSH exclusive par paires de clés asymétriques, désactivation de l'accès root, conformément aux guides ANSSI.</p>
+      </div>
+    </div>
+
+    <ul class="ac-list">
+      <li><strong>AC24.01</strong> — Connaître les principaux vecteurs d'attaque (phishing, scan de ports) et les recommandations ANSSI pour les contrer</li>
+      <li><strong>AC24.02</strong> — Mettre en œuvre les outils fondamentaux d'audit réseau (Nmap) et interpréter les résultats pour évaluer une surface d'attaque</li>
+      <li><strong>AC24.05</strong> — Appliquer des politiques de durcissement sur des équipements Cisco et des serveurs Linux en environnement de production</li>
+    </ul>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label">Niveau auto-évalué</span>
+        <span class="progress-value">En développement · 40%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" data-width="40"></div></div>
+    </div>
+  </div>
+
+  <!-- ── RT5 : Programmer ── -->
+  <div class="comp-block">
+    <div class="comp-header">
+      <div>
+        <span class="comp-id">Compétence RT5</span>
+        <h3>Programmer les équipements et automatiser les tâches</h3>
+      </div>
+      <span class="sae-badge badge-green">Niveau 1</span>
+    </div>
+
+    <div class="saes-linked">
+      <span class="saes-linked-label">SAÉ liées :</span>
+      <a href="sae14.html" class="sae-chip">SAÉ 1.4</a>
+      <a href="sae15.html" class="sae-chip">SAÉ 1.5</a>
+    </div>
+
+    <div class="comp-synthese">
+      La SAÉ 1.4 a constitué mon premier contact avec le développement web professionnel : structure sémantique HTML5, mise en page CSS (Flexbox/Grid), conformité W3C, accessibilité WCAG 2.0 AA, et versionnement Git avec hébergement GitHub Pages. La SAÉ 1.5 a prolongé cette logique vers le backend Python : consommation d'une API OpenStreetMap (requêtes HTTP, parsing JSON), traitement graphique avec Pillow, gestion d'exceptions et portabilité du script. <strong>Ces deux SAÉ m'ont révélé que la programmation est un levier d'automatisation transversal indispensable dans les métiers réseau, du script d'audit à l'interface utilisateur.</strong>
+    </div>
+
+    <div class="ac-detail-grid">
+      <div class="ac-detail-card">
+        <div class="ac-sae-label">SAÉ 1.4</div>
+        <p>Développement d'un site web multipage (HTML5/CSS3) conforme W3C et WCAG 2.0 AA, intégrant une charte graphique cohérente et un design responsive via Media Queries.</p>
+      </div>
+      <div class="ac-detail-card">
+        <div class="ac-sae-label">SAÉ 1.4</div>
+        <p>Gestion de projet avec Trello (Kanban) et diagramme de Gantt, versionnement Git avec commits signifiants et hébergement GitHub Pages.</p>
+      </div>
+      <div class="ac-detail-card">
+        <div class="ac-sae-label">SAÉ 1.5</div>
+        <p>Développement Python en binôme : interrogation de l'API OpenStreetMap, parsing de réponses JSON et conversion de coordonnées géographiques en rendu cartographique.</p>
+      </div>
+      <div class="ac-detail-card">
+        <div class="ac-sae-label">SAÉ 1.5</div>
+        <p>Traitement d'images avec Pillow (assemblage, annotations graphiques), gestion d'exceptions et portabilité du script en dehors de tout IDE.</p>
+      </div>
+    </div>
+
+    <ul class="ac-list">
+      <li><strong>AC15.01</strong> — Concevoir et structurer un site web sémantique multipage conforme aux standards W3C et aux critères d'accessibilité WCAG 2.0 AA</li>
+      <li><strong>AC15.02</strong> — Utiliser Git pour le versionnement, travailler en branches et déployer sur GitHub Pages</li>
+      <li><strong>AC15.03</strong> — Implémenter des scripts Python modulaires interagissant avec des API REST (requêtes HTTP, parsing JSON, gestion d'erreurs)</li>
+      <li><strong>AC15.04</strong> — Automatiser le traitement et la restitution visuelle de données géographiques avec la bibliothèque Pillow</li>
+    </ul>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label">Niveau auto-évalué</span>
+        <span class="progress-value">Intermédiaire · 60%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" data-width="60"></div></div>
+    </div>
+  </div>
+
+  <!-- ── Réflexion globale ── -->
+  <div class="reflexion-card">
+    <div class="label">Regard rétrospectif</div>
+    <h3>Synthèse du Semestre 1</h3>
+    <p>Ce premier semestre a posé les fondations de mon parcours en BUT R&amp;T Cybersécurité. Les cinq SAÉ réalisées m'ont permis de traverser l'ensemble du spectre du métier : de la couche physique (mesures DTF, photométrie fibre) jusqu'à la couche applicative (scripts Python, site web), en passant par l'administration système (Debian/Proxmox) et la sécurité (audit Nmap, durcissement Cisco).</p>
+    <p>Si je devais identifier <strong>ma principale progression</strong>, c'est la capacité à transformer un échec en levier d'amélioration. Qu'il s'agisse de la certification ANSSI non obtenue (SAÉ 1.01), de la route statique oubliée lors de la présentation finale (SAÉ 1.2), ou des mesures cuivre incorrectes suite à une mauvaise lecture du schéma (SAÉ 1.3) — chaque erreur a été documentée, analysée et convertie en apprentissage concret dans ce portfolio.</p>
+    <p><strong>Ce que j'emporte avant tout</strong> : l'importance des tests d'intégration collectifs avant toute recette, la valeur d'une planification rigoureuse (Gantt, Trello) pour ne pas subir la charge de travail, et la compréhension que la sécurité n'est pas une couche qu'on ajoute en fin de projet, mais une contrainte à intégrer dès la conception.</p>
+    <p><strong>Objectifs pour le Semestre 2 :</strong> Approfondir les protocoles de routage dynamique (OSPF, BGP), consolider mes bases en cybersécurité défensive, obtenir la certification ANSSI SecNumAcadémie, et automatiser des tâches d'administration réseau avec Python.</p>
+  </div>
+
+</main>
+
+<footer class="footer-strip">
+  <span>BUT Réseaux &amp; Télécommunications · <strong>IUT Grand Ouest Normandie</strong></span>
+  <span>portfolio numérique — <span id="year"></span></span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.progress-fill').forEach(el => {
+          el.style.width = (el.getAttribute('data-width') || '0') + '%';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.comp-block').forEach(block => observer.observe(block));
+</script>
+</body>
+</html>

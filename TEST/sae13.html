@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport SAÉ 1.3 - Transmission</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="sae13.css">
+</head>
+<body>
+
+    <main>
+        <h1>SAÉ 1.3 : Découverte d'un dispositif de transmission</h1>
+        <h2>Étude des supports physiques de transmission (Cuivre et Fibre Optique)</h2>
+
+        <section>
+            <h3>I. Contexte et cahier des charges</h3>
+            <p>Ce projet, réalisé dans le cadre de la SAÉ 1.3, avait pour objectif l'étude des deux supports physiques de transmission majeurs de la première année : les câbles en cuivre et la fibre optique. Le cahier des charges consistait à comprendre et à reproduire, par des manipulations, les paramétrages et mesures automatiques effectués par un certificateur de câble professionnel. Ce projet intégrait une dimension documentaire importante, nécessitant la création d'une fiche de synthèse pour le QCM final, ainsi qu'une approche expérimentale rigoureuse via des TP. Le travail final consistait à rendre deux rapports de mesure distincts, un pour le cuivre et un pour la fibre optique, présentant les résultats obtenus lors des phases de manipulation.</p>
+        </section>
+
+        <section>
+            <h3>II. Vocabulaire technique utilisé</h3>
+            <ul>
+                <li><strong>DTF (Distance to Fault) :</strong> Méthode de mesure permettant de localiser précisément la distance à un défaut dans un câble en cuivre (coaxial, Ethernet).</li>
+                <li><strong>NVP (Nominal Velocity of Propagation) :</strong> Caractéristique physique d'un câble exprimant la vitesse de propagation des ondes, nécessaire pour déterminer la longueur du câble.</li>
+                <li><strong>Photométrie :</strong> Technique de mesure utilisée ici pour qualifier l'atténuation d'une liaison par fibre optique.</li>
+                <li><strong>FTTH (Fiber To The Home) :</strong> Type de liaison fibrée étudiée, représentative des services vendus par les fournisseurs d'accès internet.</li>
+                <li><strong>GBF & Oscilloscope :</strong> Instruments de mesure utilisés pour relever le temps de parcours d'une impulsion dans le câble afin d'en calculer la longueur.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>III. Apprentissages Critiques (AC) et Bilan</h3>
+            <ul>
+                <li><strong>AC - Mesurer et Caractériser (RT5) :</strong> Ce projet a été mon premier contact concret avec la métrologie des réseaux. J'ai acquis la maîtrise de l'utilisation d'instruments complexes (analyseur DTF, GBF, oscilloscope) pour caractériser des supports de transmission. J'ai compris l'importance de la précision dans les mesures physiques (NVP, atténuation) pour valider la conformité d'une infrastructure.</li>
+                <li><strong>AC - Développer une démarche méthodologique :</strong> La rigueur exigée lors des manipulations de câblage et de photométrie m'a permis de comprendre que le succès d'une mesure dépend de la méthode employée. L'utilisation d'une fiche de synthèse personnelle, corrélée à l'étude documentaire, a renforcé ma capacité à synthétiser des connaissances techniques complexes.</li>
+                <li><strong>AC - Communication et Reporting :</strong> En rédigeant les deux rapports de mesure (cuivre et fibre), j'ai appris à structurer des données techniques et à présenter des résultats de manière claire et professionnelle, conformément aux attentes du monde industriel. C'est une compétence essentielle pour documenter une infrastructure réseau.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>IV. Méthodologie et étapes de mise en œuvre</h3>
+            
+            <h4>1. Étude documentaire</h4>
+            <p>Cette phase préparatoire a permis de comprendre le rôle des mesures dans le milieu professionnel et les étapes de certification. J'ai dû identifier les formules clés et les mesures à effectuer pour caractériser un dispositif, des éléments compilés dans ma fiche de synthèse. Cette partie m'a permis d'acquérir les bases fondamentales ; grâce à cela, j'ai appris à maîtriser les calculs théoriques, ce qui m'a permis de vérifier mes résultats expérimentaux par la suite, tout en accompagnant chaque étape d'une explication et d'une analyse critique de mes démarches.</p>
+            <div class="placeholder">[Insérer ici votre capture d'écran de la fiche de synthèse]</div>
+
+            <h4>2. Mesures sur le support cuivre (Coaxial et Ethernet)</h4>
+            <p>Dans cette phase, j'ai manipulé des câbles pour déterminer leur longueur et localiser d'éventuels défauts. À l'aide de l'analyseur DTF, d'un GBF et d'un oscilloscope, j'ai utilisé la valeur de la NVP identifiée directement dans les documents techniques fournis, ce qui m'a permis de déterminer la longueur du câble à caractériser. Cependant, j'ai rencontré une difficulté notable lors du câblage : avec mes camarades, nous avons mal interprété le schéma fourni par le professeur pour effectuer les différentes mesures. Cette erreur d'interprétation a rendu nos premières mesures incorrectes. Avec le recul, nous aurions dû solliciter l'aide du professeur plus tôt pour qu'il nous explique le schéma, ce qui nous aurait permis de réaliser un montage conforme et d'obtenir des résultats fiables dès le départ.</p>
+            <div class="placeholder">[Insérer ici votre capture d'écran des mesures cuivre / courbes oscilloscopes]</div>
+
+            <h4>3. Mesures sur fibre optique (Liaison FTTH)</h4>
+            <p>Avant de réaliser le câblage de la liaison affectée, nous avons procédé au nettoyage rigoureux des connecteurs à l'aide d'un stylo optique. Cette étape est indispensable car, dans le domaine de la fibre optique, la moindre particule de poussière peut provoquer une atténuation importante du signal et fausser les mesures. Une fois le matériel propre, nous avons effectué le câblage de la liaison. J'ai ensuite réalisé une mesure d'atténuation globale par photométrie pour qualifier la liaison selon les standards professionnels. Pour valider notre démarche, nous avons vérifié nos résultats expérimentaux en les comparant avec le calcul théorique. Comme le montre la capture d'écran, le résultat obtenu correspond parfaitement au calcul théorique, ce qui confirme la validité de notre montage et la fiabilité de nos mesures.</p>
+            <div class="placeholder">[Insérer ici votre capture d'écran des résultats de mesure photométrie]</div>
+
+            <h4>4. Rapport et Validation</h4>
+            <p>La dernière phase a été la rédaction des deux rapports de mesure (format A4 recto-verso) soumis sur eCampus. Ces documents synthétisent les résultats et valident les compétences acquises lors des TP et du projet avant l'échéance du QCM final.</p>
+            
+        </section>
+    </main>
+
+</body>
+</html>
